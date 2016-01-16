@@ -1,0 +1,19 @@
+// out: ../css/style.css, sourcemap: false, compress: true
+
+oss ='../images/';
+vs = '';
+
+bgcolor = #000;
+loadingColor = #fff;
+
+vendor(prop, args)
+    -webkit-{prop} args
+    {prop} args
+
+@import "reset";
+@import "common";
+@import "animation_common";
+@import "animation_diy";
+@import "gm";
+@import "layout";
+@import "modal";
