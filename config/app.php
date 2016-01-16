@@ -6,7 +6,7 @@
     $websiteTitle = '活动网站标题';
 
     // CDN静态地址设置
-    $cdnUrl = "public/";
+    $cdnUrl = $websiteUrl."public/";
     // 文件版本号，用于未设置CDN时刷新资源使用
 	$version = "";
 

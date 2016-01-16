@@ -4,8 +4,6 @@
 				<div></div>
 				<div></div>
 			</div>
-			<!-- <div class="double-bounce1"></div>
-			<div class="double-bounce2"></div> -->
 		</div>
 		<div class="loading_data">LOADING</div>
 	</div>

@@ -13,20 +13,20 @@ define(function(require, exports, module) {
 		}
 	});
 
+	function loadProcess(_per) {
+		loadingData.html(_per + "%");
+	}
+
 	function loadComplete(_imgs) {
 		loading.remove();
 		gm.animate.list(".wrap").removeClass("hide");
 		initIndex();
 	}
 
-	function loadProcess(_per) {
-		loadingData.html(_per + "%");
-	}
-
 	loadImg(imgArr, loadComplete, loadProcess);
 
 	function initIndex() {
-
+		gm.page.show(__initPage);
 	}
 
 });
