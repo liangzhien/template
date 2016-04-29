@@ -1,10 +1,13 @@
 define(function(require, exports, module) {
-	require("common");
-	var loadImg = require("http://qcdn.igumo.cc/libs/components/loadImg.js");
+	// require("common");
 
 	var imgArr = [];
 	var loading = $(".loading"),
 		loadingData = $(".loading_data");
+
+	$("img").each(function() {
+		imgArr.push($(this).attr("src"));
+	});
 
 	$("div,a").each(function() {
 		var _bg = $(this).css("background-image");
@@ -20,13 +23,12 @@ define(function(require, exports, module) {
 	function loadComplete(_imgs) {
 		loading.remove();
 		gm.animate.list(".wrap").removeClass("hide");
-		initIndex();
+		gm.page.show(__initPage);
 	}
 
-	loadImg(imgArr, loadComplete, loadProcess);
+	gm.loadImg(imgArr, loadComplete, loadProcess);
 
 	function initIndex() {
-		gm.page.show(__initPage);
 	}
 
 });

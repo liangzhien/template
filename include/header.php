@@ -22,24 +22,34 @@ include "config/app.php";
 	<title><?=$websiteTitle?></title>
 	<meta name="viewport" content="width=640,target-densitydpi=device-dpi,maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css<?=$version?>">
-	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<script src="http://qcdn.igumo.cc/libs/zepto.min.js"></script>
-	<script src="http://qcdn.igumo.cc/libs/core.min.js"></script>
-   	<script src="<?=$cdnUrl?>assets/js/sea.js<?=$version?>"></script>
+   	<script src="<?=$cdnUrl?>assets/js/libs/base.js<?=$version?>"></script>
    	<script>
-		seajs.config({ 'map': [ [/^(.*\.(?:css|js))(.*)$/i, "$1<?=$version?>"] ] });
+		seajs.config({
+			'map': [ [/^(.*\.(?:css|js))(.*)$/i, "$1<?=$version?>"] ],
+			"base": '<?=$cdnUrl?>assets/js/',
+		});
 	</script>
 	<script>
-		var _version = "<?=$version?>";
-		var	_cdnurl = "<?=$cdnUrl?>";
-		var	_path_prefix = _cdnurl + "dist/";
-		var	_defaultWxData = {
+		var __version = "<?=$version?>";
+		var	__cdnurl = "<?=$cdnUrl?>";
+		var	__defaultWxData = {
 			imgUrl : "<?=$wxData['imgUrl']?>",
 			link : "<?=$wxData['link']?>",
 			desc : "<?=$wxData['desc']?>",
 			title : "<?=$wxData['title']?>",
 			singleDesc : "<?=$wxData['singleDesc']?>"
 		};
+
+		gm.ready(function(){
+	    	FastClick.attach(document.body);
+	    	$(document).on("touchmove", function(e) {
+	    		e.preventDefault();
+	    	});
+	    	$(document).on("touchmove",".scroller", function(e) {
+	    		e.stopPropagation();
+	    	});
+	    	gm.setSuit();
+		})
 	</script>
 </head>
 <body>
