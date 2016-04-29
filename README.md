@@ -1,4 +1,3 @@
-# Activity-Tepmlate
 # H5基本框架
 
 ##  工具需求
