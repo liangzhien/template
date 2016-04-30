@@ -65,6 +65,7 @@ fis.media('pro').match('**', {
         })
     ]
 });
+
 fis.match('*.png', {
     optimizer: fis.plugin('png-compressor', {
         type: 'pngquant',

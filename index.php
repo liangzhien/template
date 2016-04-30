@@ -6,6 +6,9 @@
 		</section>
 	</div>
 	<div class="modals hide">
+		<div class="modal modal_intro hide">
+			
+		</div>
 	</div>
 </div>
 <script>

@@ -1,31 +1,13 @@
 ;/*!/src/base.js*/
 var gm = gm || {};
 
-gm.readyList = [];
-gm.loadList = [];
-gm.isReady = false;
-gm.isLoad = false;
-gm.ready = function(_fn) {
-    if (gm.isReady) {
-        _fn();
-        return;
-    }
-    gm.readyList.push(_fn);
-};
-gm.loadPush = function(_fn) {
-    if (gm.isLoad) {
-        _fn();
-        return;
-    }
-    gm.loadList.push(_fn);
-}
-
-$(function() {
-    gm.init();
-})
-
 ;/*!/src/init.js*/
 + function() {
+    gm.readyList = [];
+    gm.loadList = [];
+    gm.isReady = false;
+    gm.isLoad = false;
+
     gm.init = function(){
         $.each(gm.readyList,function(){
             this.call();
@@ -39,6 +21,24 @@ $(function() {
         });
         gm.isLoad = true;
     }
+    gm.ready = function(_fn) {
+        if (gm.isReady) {
+            _fn();
+            return;
+        }
+        gm.readyList.push(_fn);
+    };
+    gm.loadPush = function(_fn) {
+        if (gm.isLoad) {
+            _fn();
+            return;
+        }
+        gm.loadList.push(_fn);
+    }
+
+    $(function() {
+        gm.init();
+    })
 }();
 
 ;/*!/src/animate.js*/
