@@ -24,6 +24,7 @@ define(function(require, exports, module) {
 		loading.remove();
 		gm.animate.list(".wrap").removeClass("hide");
 		gm.page.show(__initPage);
+		gm.loadend();
 	}
 
 	gm.loadImg(imgArr, loadComplete, loadProcess);
