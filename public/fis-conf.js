@@ -57,11 +57,13 @@ function getVersion(){
     }
 }
 
+var currVersion = getVersion();
+
 fis.media('pro').match('**', {
     deploy: [
         fis.plugin('skip-packed'),
         fis.plugin('local-deliver', {
-            to: '../release/' + getVersion()
+            to: '../release/' + currVersion
         })
     ]
 });
@@ -76,3 +78,5 @@ fis.match('*.png', {
 fis.match('*.css', {
     isCssLike: false
 })
+
+console.log("本次版本号为： "+currVersion);
