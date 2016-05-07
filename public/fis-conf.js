@@ -47,7 +47,7 @@ fis.media('qa').match('**', {
 
 function getVersion(){
     var _now = new Date();
-    return + checkTime(_now.getDate()) + checkTime(_now.getHours()) + checkTime(_now.getMinutes()) + checkTime(_now.getSeconds());
+    return "" + checkTime(_now.getDate()) + checkTime(_now.getHours()) + checkTime(_now.getMinutes()) + checkTime(_now.getSeconds());
 
     function checkTime(i) {
         if (i < 10) {
