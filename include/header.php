@@ -45,7 +45,7 @@ include "config/app.php";
 	    	$(document).on("touchmove", function(e) {
 	    		e.preventDefault();
 	    	});
-	    	$(document).on("touchmove",".scroller", function(e) {
+	    	$(".scroller").on("touchmove", function(e) {
 	    		e.stopPropagation();
 	    	});
 	    	gm.setSuit();

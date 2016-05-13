@@ -29,7 +29,4 @@ define(function(require, exports, module) {
 
 	gm.loadImg(imgArr, loadComplete, loadProcess);
 
-	function initIndex() {
-	}
-
 });
