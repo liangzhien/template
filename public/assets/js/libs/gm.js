@@ -158,7 +158,7 @@ var gm = gm || {};
         if (currModel) {
             if (currModel.hasClass("modal_" + _modalName)) return;
             currModel.removeClass("show");
-            currModel.one("webkitTransitionEnd animationend", function() {
+            currModel.one("webkitTransitionEnd", function() {
                 currModel.addClass("hide");
             });
         }
@@ -168,7 +168,7 @@ var gm = gm || {};
         setTimeout(function() {
             modalContainer.addClass("show");
             newModal.addClass("show");
-            newModal.one("webkitTransitionEnd animationend", function() {
+            newModal.one("webkitTransitionEnd", function() {
                 // setTimeout(function() {
                 isRuning = false;
                 currModel = newModal;
@@ -191,7 +191,7 @@ var gm = gm || {};
         isRuning = true;
         modalContainer.removeClass("show");
         currModel.removeClass("show");
-        modalContainer.one("webkitTransitionEnd animationend", function() {
+        modalContainer.one("webkitTransitionEnd", function() {
             modalContainer.addClass("hide");
             currModel.addClass("hide");
             isRuning = false;
@@ -276,14 +276,14 @@ var gm = gm || {};
         if (currPage) {
             if (currPage.hasClass(_pageName)) return;
             currPage.removeClass("show");
-            currPage.one("webkitTransitionEnd animationend", function() {
+            currPage.one("webkitTransitionEnd", function() {
                 currPage.addClass("hide");
             });
         }
         newPage.removeClass("hide");
         setTimeout(function() {
             newPage.addClass("show");
-            newPage.one("webkitTransitionEnd animationend", function() {
+            newPage.one("webkitTransitionEnd", function() {
                 // setTimeout(function() {
                     currPage = newPage;
                     isRuning = false;
@@ -486,7 +486,7 @@ var gm = gm || {};
                 imgUrl: wxData.imgUrl,
                 success: function() {
                     wxData.callback();
-                    _tracker.page("share/timeline");
+                    gm.tracker.page("share/timeline");
                 },
                 cancel: function() {}
             });
@@ -499,7 +499,7 @@ var gm = gm || {};
                 dataUrl: '',
                 success: function() {
                     wxData.callback();
-                    _tracker.page("share/appmessage");
+                    gm.tracker.page("share/appmessage");
                 },
                 cancel: function() {}
             });
