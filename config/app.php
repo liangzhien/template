@@ -1,12 +1,12 @@
 <?php
 
     // 活动网站地址
-    $websiteUrl = 'http://hillgo.com/keying/holike/show20160425/';
+    $websiteUrl = 'http://localhost/';
     // 活动网站标题
     $websiteTitle = '活动网站标题';
 
     // CDN静态地址设置
-    $cdnUrl = "http://hillgo.com/keying/holike/show20160425/release/test/";
+    $cdnUrl = "http://localhost/release/test/";
     // 文件版本号，用于未设置CDN时刷新资源使用
 	$version = "";
 
