@@ -159,7 +159,7 @@ var gm = gm || {};
             if (currModel.hasClass("modal_" + _modalName)) return;
             currModel.removeClass("show");
             currModel.one("webkitTransitionEnd", function() {
-                currModel.addClass("hide");
+                $(this).addClass("hide");
             });
         }
         isRuning = true;
@@ -168,18 +168,13 @@ var gm = gm || {};
         setTimeout(function() {
             modalContainer.addClass("show");
             newModal.addClass("show");
-            newModal.one("webkitTransitionEnd", function() {
-                // setTimeout(function() {
-                isRuning = false;
-                currModel = newModal;
-                // }, 300);
-
-                if( _time && _time > 1000 ){
-                    setTimeout(function () {
-                        _hideModal(_callback);
-                    }, _time);
-                }
-            });
+            isRuning = false;
+            currModel = newModal;
+            if( _time && _time > 1000 ){
+                setTimeout(function () {
+                    _hideModal(_callback);
+                }, _time+500);
+            }
         }, 20);
         gm.tracker.page("modal/" + _modalName);
         return newModal;
@@ -277,18 +272,14 @@ var gm = gm || {};
             if (currPage.hasClass(_pageName)) return;
             currPage.removeClass("show");
             currPage.one("webkitTransitionEnd", function() {
-                currPage.addClass("hide");
+                $(this).addClass("hide");
             });
         }
         newPage.removeClass("hide");
         setTimeout(function() {
             newPage.addClass("show");
-            newPage.one("webkitTransitionEnd", function() {
-                // setTimeout(function() {
-                    currPage = newPage;
-                    isRuning = false;
-                // }, 50);
-            });
+            currPage = newPage;
+            isRuning = false;
         }, 20);
         !!currPage && gm.tracker.page(_pageName);
         return newPage;
