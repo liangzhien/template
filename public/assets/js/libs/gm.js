@@ -109,7 +109,7 @@ var gm = gm || {};
         }
     }
 
-    debug.prototype.trace(_msg){
+    debug.prototype.trace = function(_msg){
         this.debugBox.append("<p>"+_msg+"</p>");
     }
 
