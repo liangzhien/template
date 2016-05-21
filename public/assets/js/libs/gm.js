@@ -35,6 +35,7 @@ var gm = gm || {};
         }
         gm.loadList.push(_fn);
     }
+    gm.push = gm.loadPush;
 
     $(function() {
         gm.init();
@@ -91,8 +92,11 @@ var gm = gm || {};
 + function() {
 
     function debug(){
-        var debugBox = $("<div class='debug'></div>");
-        debugBox.appendTo($('body'));
+    }
+
+    debug.prototype.init = function(){
+        this.debugBox = $("<div class='debug'></div>");
+        this.debugBox.appendTo($('body'));
         window.onerror = function(errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
             var errorMsg = []
             errorMsg.push("错误信息：", errorMessage);
@@ -103,9 +107,13 @@ var gm = gm || {};
 
             debugBox.html(errorMsg.join("<br>"));
         }
-        return debugBox;
     }
-    gm.debug = debug;
+
+    debug.prototype.trace(_msg){
+        this.debugBox.append("<p>"+_msg+"</p>");
+    }
+
+    gm.debug = new debug();
 
 }();
 
@@ -385,12 +393,10 @@ var gm = gm || {};
         var _viewports = $(".viewport");
         if (_viewports.length) {
             var _s = Math.max(window.innerHeight,$(window).height()) / _height;
-            if (_s <= 1) {
-                _viewports.css({
-                    "-webkit-transform-origin": "center top",
-                    "-webkit-transform": "scale(" + _s + "," + _s + ")"
-                });
-            }
+            _viewports.css({
+                "-webkit-transform-origin": "center top",
+                "-webkit-transform": "scale(" + _s + "," + _s + ")"
+            });
         }
     }
 
@@ -473,7 +479,7 @@ var gm = gm || {};
             if( !gm.wxData.singleDesc ) gm.wxData.singleDesc = gm.wxData.desc;
             wx.onMenuShareTimeline({
                 title: wxData.desc,
-                link: wxData.link,
+                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "source=timeline",
                 imgUrl: wxData.imgUrl,
                 success: function() {
                     wxData.callback();
@@ -484,7 +490,7 @@ var gm = gm || {};
             wx.onMenuShareAppMessage({
                 title: wxData.title,
                 desc: wxData.singleDesc,
-                link: wxData.link,
+                link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "source=appmessage",
                 imgUrl: wxData.imgUrl,
                 type: '',
                 dataUrl: '',
