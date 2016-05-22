@@ -1,7 +1,6 @@
 fis.set('project.ignore', [
     'source/**',
     'assets/stylus/**',
-    'assets/js/libs/zepto.min.js',
     'release/**',
     'fis-conf.js',
     '.DS_Store'
@@ -25,9 +24,6 @@ fis.match('*.js', {
     })
 });
 
-fis.match('assets/js/libs/zepto.min.js', {
-    packOrder: -100
-});
 fis.match('assets/js/libs/jquery.min.js', {
     packOrder: -100
 });
@@ -71,7 +67,7 @@ fis.media('pro').match('**', {
 fis.match('*.png', {
     optimizer: fis.plugin('png-compressor', {
         type: 'pngquant',
-        quality: '30-50'
+        quality: [30,50]
     })
 });
 
