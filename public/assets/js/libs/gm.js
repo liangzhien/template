@@ -36,6 +36,7 @@ var gm = gm || {};
         gm.loadList.push(_fn);
     }
     gm.push = gm.loadPush;
+    gm.load = gm.loadPush;
 
     $(function() {
         gm.init();
