@@ -71,6 +71,14 @@ fis.match('*.png', {
     })
 });
 
+// var webp=require('webp-converter');
+// fis.match('*.jpg', {
+//     optimizer: function (content, file, settings) {
+//         webp.cwebp(file.fullname,file.dirname+"/webp/"+file.filename+".webp","50",function(status){});
+//         return content
+//     }
+// });
+
 fis.match('*.css', {
     isCssLike: false
 })
