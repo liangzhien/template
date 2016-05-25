@@ -24,27 +24,28 @@
     width 640px
     height 1040px
 }
-.pages {
-    @extend .screen;
-}
-.page {
-    @extend .screen;
-    opacity 0;
-    vendor("transition",all 0.5s);
-    &[data-ease="slide"] {
-        opacity 1;
-        vendor("transform",translateX(640px));
-    }
-    &.show {
-        opacity 1;
-    }
-    &[data-ease="slide"].show {
-        vendor("transform",translateX(0px));
-    }
-}
 .wrap {
     @extend .screen;
+    width 640px;
     overflow hidden;
+    .pages {
+        @extend .full;
+    }
+    .page {
+        @extend .full;
+        opacity 0;
+        vendor("transition",all 0.5s);
+        &[data-ease="slide"] {
+            opacity 1;
+            vendor("transform",translateX(640px));
+        }
+        &.show {
+            opacity 1;
+        }
+        &[data-ease="slide"].show {
+            vendor("transform",translateX(0px));
+        }
+    }
 }
 .hide {
     display: none;
