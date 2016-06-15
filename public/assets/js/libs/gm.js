@@ -392,8 +392,13 @@ var gm = gm || {};
     function setSuit(height){
         var _height = height || 1038;
         var _viewports = $(".viewport");
+        var _width = Math.max(window.innerWidth,$(window).width());
+        var _ms = 1;
+        if( _width != 640 ){
+            _ms = 640/_width;
+        }
         if (_viewports.length) {
-            var _s = Math.max(window.innerHeight,$(window).height()) / _height;
+            var _s = Math.max(window.innerHeight,$(window).height())*_ms / _height;
             _viewports.css({
                 "-webkit-transform-origin": "center top",
                 "-webkit-transform": "scale(" + _s + "," + _s + ")"
