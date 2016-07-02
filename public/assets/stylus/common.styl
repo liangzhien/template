@@ -1,6 +1,10 @@
 // main: style.styl
 
 .viewport {
+    position absolute
+    top 0
+    left 0
+    width 100%;
     vendor("transform-origin",center top);
 }
 .screen {
@@ -22,6 +26,13 @@
     top 0
     left 0
     width 640px
+    height 1040px
+}
+.fullsize {
+    position absolute
+    top 0
+    left -80
+    width 800px
     height 1040px
 }
 .wrap {
@@ -54,6 +65,8 @@
     overflow: auto;
     vendor("overflow-scrolling",touch);
 }
-input,select {
-    vendor("appearance",textfield);
+button,input,select,textarea {
+    border: 0 none;
+    background: none;
+    vendor("appearance",none);
 }

@@ -390,15 +390,16 @@ var gm = gm || {};
 ;/*!/src/setSuit.js*/
 + function() {
     function setSuit(height){
-        var _height = height || 1038;
+        var _designHeight = height || 1038;
         var _viewports = $(".viewport");
-        var _width = Math.max(window.innerWidth,$(window).width());
+        var _currWidth = Math.max(window.innerWidth,$(window).width());
         var _ms = 1;
-        if( _width != 640 ){
-            _ms = 640/_width;
+        if( _currWidth != 640 ){
+            _ms = 640/_currWidth;
         }
+        var _currHeight = Math.max(window.innerHeight,$(window).height())*_ms;
         if (_viewports.length) {
-            var _s = Math.max(window.innerHeight,$(window).height())*_ms / _height;
+            var _s =_currHeight / _designHeight;
             _viewports.css({
                 "-webkit-transform-origin": "center top",
                 "-webkit-transform": "scale(" + _s + "," + _s + ")"
@@ -407,6 +408,11 @@ var gm = gm || {};
     }
 
     gm.setSuit = gm.setScale = setSuit;
+
+    return {
+        width : _currWidth,
+        height : _currHeight
+    }
 }();
 
 ;/*!/src/setViewport.js*/

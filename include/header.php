@@ -39,6 +39,7 @@ include "config/app.php";
 			title : "<?=$wxData['title']?>",
 			singleDesc : "<?=$wxData['singleDesc']?>"
 		};
+		var __currScreen;
 
 		gm.ready(function(){
 	    	FastClick.attach(document.body);
@@ -48,7 +49,7 @@ include "config/app.php";
 	    	$(".scroller").on("touchmove", function(e) {
 	    		e.stopPropagation();
 	    	});
-	    	gm.setSuit();
+	    	__currScreen = gm.setSuit();
 		})
 	</script>
 </head>

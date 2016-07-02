@@ -6,10 +6,8 @@
 		</section>
 	</div>
 	<div class="modals hide">
-		<div class="viewport full">
-			<div class="modal modal_share hide">
+		<div class="modal modal_share hide">
 
-			</div>
 		</div>
 	</div>
 </div>
