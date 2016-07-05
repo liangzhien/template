@@ -405,14 +405,14 @@ var gm = gm || {};
                 "-webkit-transform": "scale(" + _s + "," + _s + ")"
             });
         }
+
+        return {
+            width : _currWidth,
+            height : _currHeight
+        }
     }
 
     gm.setSuit = gm.setScale = setSuit;
-
-    return {
-        width : _currWidth,
-        height : _currHeight
-    }
 }();
 
 ;/*!/src/setViewport.js*/
