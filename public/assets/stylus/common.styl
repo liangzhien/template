@@ -31,12 +31,13 @@
 .fullsize {
     position absolute
     top 0
-    left -80
+    left -80px
     width 800px
     height 1040px
 }
 .wrap {
-    @extend .screen;
+    @extend .full;
+    position relative
     width 640px;
     overflow hidden;
     .pages {

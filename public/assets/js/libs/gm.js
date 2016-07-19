@@ -240,6 +240,7 @@ var gm = gm || {};
             msgBox.addClass("show");
             _msg && msg.html(_msg);
             msgBox.css("margin-top", -msgBox.height() / 2);
+            gm.tracker.event("msg",_msg);
             _hide && setTimeout(function() {
                 _hideMsg();
                 !!_callback && _callback();
@@ -394,7 +395,7 @@ var gm = gm || {};
         var _viewports = $(".viewport");
         var _currWidth = Math.max(window.innerWidth,$(window).width());
         var _ms = 1;
-        if( _currWidth != 640 ){
+        if( _currWidth < 640 ){
             _ms = 640/_currWidth;
         }
         var _currHeight = Math.max(window.innerHeight,$(window).height())*_ms;
@@ -494,10 +495,12 @@ var gm = gm || {};
                 link: wxData.link + (wxData.link.indexOf("?") > -1 ? "&" : "?") + "source=timeline",
                 imgUrl: wxData.imgUrl,
                 success: function() {
-                    wxData.callback();
+                    wxData.callback('timeline');
                     gm.tracker.page("share/timeline");
                 },
-                cancel: function() {}
+                cancel: function() {
+                    gm.tracker.event("share",'timeline_cancel');
+                }
             });
             wx.onMenuShareAppMessage({
                 title: wxData.title,
@@ -507,10 +510,12 @@ var gm = gm || {};
                 type: '',
                 dataUrl: '',
                 success: function() {
-                    wxData.callback();
+                    wxData.callback('appmessage');
                     gm.tracker.page("share/appmessage");
                 },
-                cancel: function() {}
+                cancel: function() {
+                    gm.tracker.event("share",'appmessage_cancel');
+                }
             });
         },
         callback: function() {}
