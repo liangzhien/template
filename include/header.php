@@ -40,7 +40,6 @@ include "config/app.php";
 			singleDesc : "<?=$wxData['singleDesc']?>"
 		};
 		var __currScreen;
-
 		gm.ready(function(){
 	    	FastClick.attach(document.body);
 	    	$(document).on("touchmove", function(e) {

@@ -60,6 +60,7 @@ var gm = gm || {};
             '-webkit-animation': 'none',
             'display': 'none'
         });
+
         $element.each(function(index, element) {
             var $element = $(element),
                 $animation = $element.data(),
@@ -214,7 +215,7 @@ var gm = gm || {};
             .on("click", '.modals', function(){
                 _hideModal();
             })
-            .on("click", '.modal_close', function(e){
+            .on("click", '[data-modal-close]', function(e){
                 e.preventDefault();
                 _hideModal();
             })
@@ -313,79 +314,51 @@ var gm = gm || {};
 
 ;/*!/src/setMusic.js*/
 + function() {
-
-    var _icoItem = '<div class="music"></div>';
-    var _audioItem = '<audio id="music" src="{{musicUrl}}" {{times}}></audio>';
-
-    var _ico, _audio, _eventList = [];
-
-    function _init(_musicUrl,_once,_noIco) {
-        _audioItem = _audioItem.replace('{{musicUrl}}', _musicUrl);
-        _audioItem = _once ? _audioItem.replace('{{times}}','') : _audioItem.replace('{{times}}','loop');
-        var _html = _noIco ? _audioItem : (_icoItem + _audioItem);
-        if( $('#music').length > 1 ) {
-            $('#music').remove();
-        }
-        $('body').append(_html);
-        setTimeout(_bind, 100);
+    function MyAudio(_config){
+        return this.init(_config);
     }
 
-    function _bind() {
-        _ico = $(".music");
-        _ico.on("click", function() {
-            if (_ico.hasClass("on")) {
-                return _stop();
+    var theAudio = {
+        init : function(_config){
+            this.url = _config.url;
+            this.loop = _config.loop;
+            this.autoplay = _config.autoplay || false;
+            this.icon = _config.icon || false;
+
+            this.sound = new Howl({
+              src: [this.url],
+              autoplay: this.autoplay,
+              loop: this.loop,
+            });
+
+            if( this.icon ){
+                this.addIcon();
             }
-            _play()
-        });
-        _audio = $("#music")[0];
-        _bindEvent();
-    }
 
-    function _onEvent(_e,_cb){
-        _eventList.push([_e,_cb]);
-    }
-
-    function _bindEvent(){
-        $.each(_eventList,function(i){
-            _audio.addEventListener(_eventList[i][0],_eventList[i][1],false);
-        })
-    }
-
-    function _offEvent(_e,_cb){
-        _audio.removeEventListener(_e,_cb,false);
-    }
-
-    function _play() {
-        if (!_audio) {
-            setTimeout(_play, 300);
-            return;
-        }
-        _audio.play();
-        _ico.addClass("on");
-        gm.tracker.event("btn", 'music', 'status', 'play');
-    }
-
-    function _stop() {
-        _audio.pause();
-        _ico.removeClass("on");
-        gm.tracker.event("btn", 'music', 'status', 'stop');
-    }
-
-    function _end(_cb){
-        endFunc = _cb;
-    }
-
-    gm.music =  {
-        init: _init,
-        play: _play,
-        stop: _stop,
-        on : _onEvent,
-        off : _offEvent,
-        audio : function(){
-            return _audio;
+            return this.sound;
+        },
+        addIcon : function(){
+            var self = this;
+            $('body').append('<div class="music"></div>');
+            self.ico = $(".music");
+            self.ico.on("click", function() {
+                if (self.ico.hasClass("on")) {
+                    self.sound.mute(true);
+                    self.ico.removeClass("on");
+                    return;
+                }
+                self.sound.mute(false);
+                self.ico.addClass("on");
+            });
+            if( self.autoplay ){
+                self.ico.trigger("click");
+            }
         }
     }
+
+    MyAudio.prototype = theAudio;
+
+    gm.audio = MyAudio;
 }();
 
 ;/*!/src/setSuit.js*/
@@ -424,7 +397,6 @@ var gm = gm || {};
         $("head").append(_meta.attr("content", _content));
         return _meta;
     }
-
     gm.setViewport = setViewport;
 }();
 
@@ -522,6 +494,7 @@ var gm = gm || {};
     };
 
     gm.ready(function(){
+        if( !__defaultWxData ) return;
         gm.wxData.imgUrl = __defaultWxData.imgUrl;
         gm.wxData.link = __defaultWxData.link;
         gm.wxData.desc = __defaultWxData.desc;

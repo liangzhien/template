@@ -2,7 +2,7 @@
 <div class="wrap hide">
 	<div class="pages">
 		<section class="page index">
-			<div class="bg" ></div>
+			<div class="bg"></div>
 		</section>
 	</div>
 	<div class="modals hide">
