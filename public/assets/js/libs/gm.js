@@ -112,7 +112,7 @@ var gm = gm || {};
     }
 
     debug.prototype.trace = function(_msg){
-        this.debugBox.append("<p>"+_msg+"</p>");
+        this.debugBox.prepend("<p>"+_msg+"</p>");
     }
 
     gm.debug = new debug();
@@ -121,7 +121,7 @@ var gm = gm || {};
 
 ;/*!/src/loadImg.js*/
 + function() {
-    function loadImg(imgUrl, loadComplete, setLoadingInfo) {
+    function loadImg(imgUrl, loadComplete, setLoadingInfo,isReturnImgObj) {
         var _imgOBJ = [];
         var len = imgUrl.length;
         var num = 0;
@@ -141,7 +141,9 @@ var gm = gm || {};
                 }
             }
             img.src = val;
-            _imgOBJ[_i] = img;
+            if( isReturnImgObj ){
+                _imgOBJ[_i] = img;
+            }
             if (_i == len - 1) return;
             _loadImg(imgUrl[_i + 1], _i + 1);
         }
@@ -339,7 +341,7 @@ var gm = gm || {};
         },
         addIcon : function(){
             var self = this;
-            $('body').append('<div class="music"></div>');
+            $('.wrap').append('<div class="music"></div>');
             self.ico = $(".music");
             self.ico.on("click", function() {
                 if (self.ico.hasClass("on")) {
@@ -433,7 +435,7 @@ var gm = gm || {};
             window.location.href = _href;
         }, 300);
         try {
-            trackEvent("link",_name);
+            trackEvent("外链",_name);
         } catch (e) {}
     }
 

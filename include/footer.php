@@ -5,7 +5,7 @@
 				<div></div>
 			</div>
 		</div>
-		<div class="loading_data">LOADING</div>
+		<div class="loading_data"></div>
 	</div>
 	<div class="msg_box">
 		<div class="msg"><strong></strong></div>
