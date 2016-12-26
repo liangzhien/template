@@ -64,12 +64,12 @@ fis.media('pro').match('**', {
     ]
 });
 
-fis.match('*.png', {
-    optimizer: fis.plugin('png-compressor', {
-        type: 'pngquant',
-        quality: [30,50]
-    })
-});
+// fis.match('*.png', {
+//     optimizer: fis.plugin('png-compressor', {
+//         type: 'pngquant',
+//         quality: [30,50]
+//     })
+// });
 
 // var webp=require('webp-converter');
 // fis.match('*.jpg', {
