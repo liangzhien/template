@@ -1,10 +1,10 @@
 define(function(require, exports, module) {
-	// require("common");
+	// require("plugin/howler.min");
 
 	var siteImgArr = [],
 		loadingBox = $(".loading"),
 		loadingImgArr = [],
-		loadingData = $(".loading_data"),
+		loadingData = $(".loading_data");
 
 	$("img").each(function() {
 		siteImgArr.push($(this).attr("src"));

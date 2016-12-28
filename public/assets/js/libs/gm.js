@@ -35,6 +35,15 @@ var gm = gm || {};
         }
         gm.loadList.push(_fn);
     }
+    gm.fire = function(cb){
+        if(typeof WeixinJSBridge == "object"){
+            WeixinJSBridge.invoke('getNetworkType', {}, function(e) {
+                cb();
+            });
+        }else{
+            cb();
+        }
+    }
     gm.push = gm.loadPush;
     gm.load = gm.loadPush;
 
@@ -322,6 +331,7 @@ var gm = gm || {};
 
     var theAudio = {
         init : function(_config){
+            var self = this;
             this.url = _config.url;
             this.loop = _config.loop;
             this.autoplay = _config.autoplay || false;
@@ -337,6 +347,12 @@ var gm = gm || {};
                 this.addIcon();
             }
 
+            self.sound.once("load",function(){
+                gm.fire(function(){
+                    self.playid = self.sound.play();
+                })
+            });
+
             return this.sound;
         },
         addIcon : function(){
@@ -345,15 +361,15 @@ var gm = gm || {};
             self.ico = $(".music");
             self.ico.on("click", function() {
                 if (self.ico.hasClass("on")) {
-                    self.sound.mute(true);
+                    self.sound.fade(1, 0, 1000 ,self.playid);
                     self.ico.removeClass("on");
                     return;
                 }
-                self.sound.mute(false);
+                self.sound.fade(0, 1, 1000 ,self.playid);
                 self.ico.addClass("on");
             });
             if( self.autoplay ){
-                self.ico.trigger("click");
+                self.ico.addClass("on");
             }
         }
     }
