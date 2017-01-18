@@ -56,3 +56,7 @@ include "config/app.php";
 <div class="hide">
 	<img src="<?=$wxData['imgUrl']?><?=$version?>" alt="">
 </div>
+<div class="hide" style="position: absolute;top:0;left:0;width:100%;height:100%;background:#fff;padding-top:40%;text-align:center;color:#333;line-height:2;color:#555;">
+	网络好像出了点小问题咯，<br>
+	请刷新或者换个网络试试吧！
+</div>

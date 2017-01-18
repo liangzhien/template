@@ -326,7 +326,7 @@ var gm = gm || {};
 ;/*!/src/setMusic.js*/
 + function() {
     function MyAudio(_config){
-        return this.init(_config);
+        this.init(_config);
     }
 
     var theAudio = {
@@ -347,13 +347,13 @@ var gm = gm || {};
                 this.addIcon();
             }
 
-            self.sound.once("load",function(){
-                gm.fire(function(){
-                    self.playid = self.sound.play();
-                })
-            });
-
-            return this.sound;
+            if( this.autoplay ){
+                self.sound.once("load",function(){
+                    gm.fire(function(){
+                        self.playid = self.sound.play();
+                    })
+                });
+            }
         },
         addIcon : function(){
             var self = this;
@@ -361,16 +361,24 @@ var gm = gm || {};
             self.ico = $(".music");
             self.ico.on("click", function() {
                 if (self.ico.hasClass("on")) {
-                    self.sound.fade(1, 0, 1000 ,self.playid);
-                    self.ico.removeClass("on");
+                    self.pause();
                     return;
                 }
-                self.sound.fade(0, 1, 1000 ,self.playid);
-                self.ico.addClass("on");
+                self.play();
             });
             if( self.autoplay ){
                 self.ico.addClass("on");
             }
+        },
+        pause : function(){
+            var self = this;
+            self.sound.fade(1, 0, 1000);
+            self.ico.removeClass("on");
+        },
+        play : function(){
+            var self = this;
+            self.sound.fade(0, 1, 1000);
+            self.ico.addClass("on");
         }
     }
 
