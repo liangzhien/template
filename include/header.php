@@ -19,6 +19,9 @@ include "config/app.php";
 	<meta name="browsermode" content="application">
 	<meta name="x5-page-mode" content="app">
 	<meta name="msapplication-tap-highlight" content="no">
+	<meta itemprop="name" content="<?=$wxData['title']?>"/>
+	<meta itemprop="image" content="<?=$wxData['imgUrl']?>" />
+	<meta name="description" itemprop="description" content="<?=$wxData['desc']?>" />
 	<title><?=$websiteTitle?></title>
 	<meta name="viewport" content="width=640,target-densitydpi=device-dpi,maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="<?=$cdnUrl?>assets/css/style.css<?=$version?>">
